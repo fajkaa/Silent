@@ -51,7 +51,7 @@ Environment.Settings = {
 	TriggerKey = "MouseButton2",
 	Toggle = false,
 	LockPart = "Head" -- Body part to lock on
-  Pred = "0.16"
+	Prediction = 0.16
 }
 
 Environment.FOVSettings = {
@@ -223,7 +223,7 @@ local function Load()
 					Animation = TweenService:Create(Camera, TweenInfo.new(Environment.Settings.Sensitivity, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {CFrame = CFrame.new(Camera.CFrame.Position, Environment.Locked.Character[Environment.Settings.LockPart].Position)})
 					Animation:Play()
 				else
-					Camera.CFrame = CFrame.new(Camera.CFrame.Position * Environment.Settings.Pred, Environment.Settings.LockPart.Position)
+					Camera.CFrame = CFrame.new(Camera.CFrame.Position, Environment.Locked.Character[Environment.Settings.LockPart].Position) * Environment.Settings.Prediction
 				end
 			end
 
@@ -338,7 +338,7 @@ function Environment.Functions:ResetSettings()
 		TriggerKey = "MouseButton2",
 		Toggle = false,
 		LockPart = "Head" -- Body part to lock on
-    Pred = "0.16"
+		Prediction = 0.16
 	}
 
 	Environment.FOVSettings = {
@@ -361,3 +361,23 @@ function Environment.Functions:ResetSettings()
 
 	Load()
 end
+
+--// Support Check
+
+if not Drawing or not writefile or not makefolder then
+	SendNotification(Title, "Your exploit does not support this script", 3); return
+end
+
+--// Reload On Teleport
+
+if Environment.Settings.ReloadOnTeleport then
+	if queueonteleport then
+		queueonteleport(game:HttpGet("https://raw.githubusercontent.com/Exunys/Aimbot-V2/main/Resources/Scripts/Main.lua"))
+	else
+		SendNotification(Title, "Your exploit does not support \"syn.queue_on_teleport()\"")
+	end
+end
+
+--// Load
+
+Load(); SendNotification(Title, "Aimbot script successfully loaded! Check the GitHub page on how to configure the script.", 5)
