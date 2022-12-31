@@ -51,7 +51,7 @@ Environment.Settings = {
 	TriggerKey = "MouseButton2",
 	Toggle = false,
 	LockPart = "Head" -- Body part to lock on
-  	Pred = 0.16
+  Pred = "0.16"
 }
 
 Environment.FOVSettings = {
@@ -223,9 +223,7 @@ local function Load()
 					Animation = TweenService:Create(Camera, TweenInfo.new(Environment.Settings.Sensitivity, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {CFrame = CFrame.new(Camera.CFrame.Position, Environment.Locked.Character[Environment.Settings.LockPart].Position)})
 					Animation:Play()
 				else
-					Camera.CFrame = CFrame.new(Camera.CFrame.Position, 
-          
-          [Environment.Settings.LockPart].Position) * getgenv().Environment.Settings.Pred
+					Camera.CFrame = CFrame.new(Camera.CFrame.Position * Environment.Settings.Pred, Environment.Settings.LockPart.Position)
 				end
 			end
 
@@ -340,7 +338,7 @@ function Environment.Functions:ResetSettings()
 		TriggerKey = "MouseButton2",
 		Toggle = false,
 		LockPart = "Head" -- Body part to lock on
-   		Pred = 0.16
+    Pred = "0.16"
 	}
 
 	Environment.FOVSettings = {
