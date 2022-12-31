@@ -51,7 +51,7 @@ Environment.Settings = {
 	TriggerKey = "MouseButton2",
 	Toggle = false,
 	LockPart = "Head" -- Body part to lock on
-  Pred = "0.16"
+  	Pred = 0.16
 }
 
 Environment.FOVSettings = {
@@ -340,7 +340,7 @@ function Environment.Functions:ResetSettings()
 		TriggerKey = "MouseButton2",
 		Toggle = false,
 		LockPart = "Head" -- Body part to lock on
-    Pred = "0.16"
+   		Pred = 0.16
 	}
 
 	Environment.FOVSettings = {
